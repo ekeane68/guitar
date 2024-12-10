@@ -1,47 +1,65 @@
 import random
 
-notes = ['A', 'B', 'C', 'D', 'E', 'F', 'G']
+guitar_notes = ['A', 'B', 'C', 'D', 'E', 'F', 'G']
 
-NUM_NOTES = len(notes)
-EXERCISE_5_TIMES = 10
-EXERCISE_6_TIMES = 6
+EXERCISE_4_TIMES = 10
+EXERCISE_5_TIMES = 6
 
+def shuffled_notes():
+    new_notes = guitar_notes.copy()
+    random.shuffle(new_notes)
+    return new_notes
 
-def main():
-    if get_iteration() < EXERCISE_5_TIMES:
-        print('Exercise 5,', get_iteration() + 1, 'out of', EXERCISE_5_TIMES)
-        exercise5()
+def get_iteration(num):
+    if num == 4:
+        file = open('Desktop/python/guitar/iteration4.txt', 'r')
     else:
-        print('Exercise 6,', get_iteration() + 1 - EXERCISE_5_TIMES, 'out of',
-              EXERCISE_6_TIMES)
-        exercise6()
-    update_iteration()
-
-def randomnotes(num):
-    if num > NUM_NOTES:
-        return
-    notes_left = notes.copy()
-    note_order = ""
-    for idx in range(num):
-        next_note = notes_left[random.randint(0, NUM_NOTES - idx - 1)]
-        note_order += next_note
-        note_order += " "
-        notes_left.remove(next_note)
-    return note_order
-    
-def exercise5():
-    print(randomnotes(2))
-
-def exercise6():
-    print(randomnotes(7))
-
-def get_iteration():
-    file = open('Desktop/python/iteration.txt', 'r')
+        file = open('Desktop/python/guitar/iteration5.txt', 'r')
     return int(file.read())
 
-def update_iteration():
-    iteration = (get_iteration() + 1)%(EXERCISE_5_TIMES + EXERCISE_6_TIMES)
-    file = open('Desktop/python/iteration.txt', 'w')
+def update_iteration(num):
+    iteration = get_iteration(num) + 1
+    if num == 4:
+        iteration %= EXERCISE_4_TIMES
+        file = open('Desktop/python/guitar/iteration4.txt', 'w')
+    else:
+        iteration %= EXERCISE_5_TIMES
+        file = open('Desktop/python/guitar/iteration5.txt', 'w')
     file.write(str(iteration))
 
-main()
+def has_sharp(note):
+    return note in ['A', 'C', 'D', 'F', 'G']
+
+def has_flat(note):
+    return note in ['A', 'B', 'D', 'E', 'G']
+
+def exercise2():
+    notes = shuffled_notes()
+    print('Exercise 2')
+    for note in notes:
+        print(note)
+
+def exercise3():
+    sharp_notes = guitar_notes.copy()
+    sharp_notes = [note for note in sharp_notes if has_sharp(note)]
+    sharp_notes = [note + ' sharp' for note in sharp_notes]
+    flat_notes = guitar_notes.copy()
+    flat_notes = [note for note in flat_notes if has_flat(note)]
+    flat_notes = [note + ' flat' for note in flat_notes]
+    notes = sharp_notes + flat_notes
+    random.shuffle(notes)
+    print('Exercise 3')
+    for note in notes:
+        print(note)
+    
+def exercise4():
+    notes = shuffled_notes()
+    print('Exercise 4,', get_iteration(4) + 1, 'out of', EXERCISE_4_TIMES)
+    print(notes[0], notes[1])
+    update_iteration(4)
+
+def exercise5():
+    notes = shuffled_notes()
+    print('Exercise 5,', get_iteration(5) + 1, 'out of', EXERCISE_5_TIMES)
+    print(notes[0], notes[1], notes[2], notes[3], notes[4], notes[5], notes[6])
+    update_iteration(5)
