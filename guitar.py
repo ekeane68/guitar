@@ -1,6 +1,12 @@
 import random
 
 guitar_notes = ['A', 'B', 'C', 'D', 'E', 'F', 'G']
+legato_exercises = list(range(39, 58))
+alt_picking_exercises = list(range(62, 79))
+econ_picking_exercises = list(range(82, 88))
+sweeping_exercises = list(range(93, 111))
+combined_exercises = list(range(114, 125))
+skipping_exercises = list(range(128, 137))
 
 EXERCISE_4_TIMES = 10
 EXERCISE_5_TIMES = 6
@@ -63,3 +69,21 @@ def exercise5():
     print('Exercise 5,', get_iteration(5) + 1, 'out of', EXERCISE_5_TIMES)
     print(notes[0], notes[1], notes[2], notes[3], notes[4], notes[5], notes[6])
     update_iteration(5)
+
+def legato():
+    exercises = legato_exercises.copy()
+    print('Legato Exercise:', random.choice(exercises))
+
+def picking():
+    exercises = alt_picking_exercises.copy()
+    exercises.extend((econ_picking_exercises.copy()))
+    print('Picking Exercise:', random.choice(exercises))
+
+def sweeping():
+    exercises = sweeping_exercises.copy()
+    print('Sweeping Exercise:', random.choice(exercises))
+
+def misc_exercise():
+    exercises = combined_exercises.copy()
+    exercises.extend(skipping_exercises.copy())
+    print('Misc. Exercise:', random.choice(exercises))
