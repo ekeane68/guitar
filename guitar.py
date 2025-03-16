@@ -72,18 +72,18 @@ def exercise5():
 
 def legato():
     exercises = legato_exercises.copy()
-    print('Legato Exercise:', random.choice(exercises))
+    return random.choice(exercises)
 
 def picking():
     exercises = alt_picking_exercises.copy()
     exercises.extend((econ_picking_exercises.copy()))
-    print('Picking Exercise:', random.choice(exercises))
+    return random.choice(exercises)
 
 def sweeping():
     exercises = sweeping_exercises.copy()
-    print('Sweeping Exercise:', random.choice(exercises))
+    return random.choice(exercises)
 
 def misc_exercise():
     exercises = combined_exercises.copy()
     exercises.extend(skipping_exercises.copy())
-    print('Misc. Exercise:', random.choice(exercises))
+    return random.choice(exercises)

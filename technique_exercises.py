@@ -1,6 +1,6 @@
 import guitar
 
-guitar.legato()
-guitar.picking()
-guitar.sweeping()
-guitar.misc_exercise()
+print('Legato Exercise:', guitar.legato())
+print('Picking Exercise:', guitar.picking())
+print('Sweeping Exercise:', guitar.sweeping())
+print('Misc. Exercise:', guitar.misc_exercise())
